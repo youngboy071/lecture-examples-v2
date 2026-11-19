@@ -32,12 +32,10 @@ class OrderRepositoryTests {
     void saveAndFindOrderTest() {
         // ID는 persist 시점에 생성되므로, 만들고 바로 저장한 뒤 다음 객체에 ID를 넘긴다
         User user = User.register("dannyseo@growmighty", "aaa33242", "Danny", "010-0000-0000");
-        entityManager.persist(user);
-
         Seller seller = Seller.create(user.getId());
-        entityManager.persist(seller);
-
         Product product = Product.create(seller.getId(), "Dofia 이동식 접이식 식탁 의자 4개 세트 가정용 소형주택 신축식", BigDecimal.valueOf(179000), 10, "test");
+        entityManager.persist(user);
+        entityManager.persist(seller);
         entityManager.persist(product);
 
         List<OrderItem> items = new ArrayList<>();
